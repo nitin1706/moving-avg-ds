@@ -40,11 +40,29 @@ public class BasicListWrapperImplTest {
     }
 
     @Test
-    public void getAvgLastN() {
+    public void getAvgFirstN() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+
+        assertEquals(new Double(2.0), new Double(list.getAvgFirstN(3)));
+        assertEquals(new Double(1.0), new Double(list.getAvgFirstN(1)));
+        assertEquals(new Double(0.0), new Double(list.getAvgFirstN(0)));
     }
 
     @Test
-    public void getAvgFirstN() {
+    public void getAvgLastN() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+
+        assertEquals(new Double(4.0), new Double(list.getAvgLastN(3)));
+        assertEquals(new Double(5.0), new Double(list.getAvgLastN(1)));
+        assertEquals(new Double(0.0), new Double(list.getAvgLastN(0)));
     }
 
     @Test
@@ -57,5 +75,16 @@ public class BasicListWrapperImplTest {
 
     @Test
     public void size() {
+    }
+
+    @Test
+    public void getAvg() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+
+        assertEquals(new Double(list.getAvg()), new Double(3.0));
     }
 }

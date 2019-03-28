@@ -26,13 +26,42 @@ public class BasicListWrapperImpl<Num extends Number> implements ListWrapper<Num
     }
 
     @Override
-    public Num getAvgLastN(int N) {
-        return null;
+    public double getAvg() {
+        if (numberList == null) {
+            throw new RuntimeException("Null List");
+        }
+        double sum = 0.0;
+        for (Num num : numberList) {
+            sum += num.doubleValue();
+        }
+
+        return (sum/numberList.size());
     }
 
     @Override
-    public Num getAvgFirstN(int N) {
-        return null;
+    public double getAvgLastN(int N) {
+        if (N == 0) {
+            return 0.0;
+        }
+        enoughElements(N);
+        double sum = 0.0;
+        for (int count = numberList.size()-1; (count >= 0 && (N >= numberList.size() - count)); count--) {
+            sum += numberList.get(count).doubleValue();
+        }
+        return (sum/N);
+    }
+
+    @Override
+    public double getAvgFirstN(int N) {
+        if (N == 0) {
+            return 0.0;
+        }
+        enoughElements(N);
+        double sum = 0.0;
+        for (int count = 0; count < numberList.size() && count < N ; count++) {
+            sum += numberList.get(count).doubleValue();
+        }
+        return (sum/N);
     }
 
     @Override
@@ -60,5 +89,11 @@ public class BasicListWrapperImpl<Num extends Number> implements ListWrapper<Num
     @Override
     public int size() {
         return numberList.size();
+    }
+
+    private void enoughElements(int N) {
+        if (N >= numberList.size()) {
+            throw new RuntimeException("List size is less than index specified.");
+        }
     }
 }

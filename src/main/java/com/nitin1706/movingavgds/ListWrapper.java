@@ -5,8 +5,10 @@ public interface ListWrapper<Num extends Number> {
     Num add(Num element);
     boolean exists(Num element);
     Num getElementAt(int index);
-    Num getAvgLastN(int N);
-    Num getAvgFirstN(int N);
+
+    double getAvg();
+    double getAvgLastN(int N);
+    double getAvgFirstN(int N);
 
     Num deleteElementAt(int index);
     Number sumAll();
